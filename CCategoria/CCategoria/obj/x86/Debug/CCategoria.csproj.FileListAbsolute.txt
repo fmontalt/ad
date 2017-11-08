@@ -1,0 +1,1 @@
+/home/fraleo/Projects/CCategoria/CCategoria/obj/x86/Debug/CCategoria.csproj.CoreCompileInputs.cache
