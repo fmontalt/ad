@@ -20,63 +20,39 @@ public partial class MainWindow : Gtk.Window
 
         TreeViewHelper.Fill(treeView, CategoriaDao.SelectAll);
 
-        treeView.Selection.Changed += delegate
-        {
+        treeView.Selection.Changed += delegate {
             bool hasSelected = treeView.Selection.CountSelectedRows() > 0;
             deleteAction.Sensitive = hasSelected;
             editAction.Sensitive = hasSelected;
             //if (treeView.Selection.CountSelectedRows() > 0)
             //    deleteAction.Sensitive = true;
             //else
-            //deleteAction.Sensitive = false;
+                //deleteAction.Sensitive = false;
         };
-
-        newAction.Activated += delegate
-        {
+        
+        newAction.Activated += delegate {
             Categoria categoria = new Categoria();
             new CategoriaWindow(categoria);
         };
 
-        editAction.Activated += delegate
-        {
-            object id = getId();
+        editAction.Activated += delegate {
+            object id = TreeViewHelper.GetId(treeView);
             Categoria categoria = CategoriaDao.Load(id);
             new CategoriaWindow(categoria);
-        };
+		};
 
-        refreshAction.Activated += delegate
-        {
-            TreeViewHelper.Fill(treeView, CategoriaDao.SelectAll);
-        };
+        refreshAction.Activated += delegate {
+			TreeViewHelper.Fill(treeView, CategoriaDao.SelectAll);
+		};
 
-        deleteAction.Activated += delegate
-        {
-            if (WindowHelper.Confirm(this, "¿Quieres eliminar el registro?"))
-            {
-                object id = getId();
-                CategoriaDao.Delete(id);
-            }
-
+        deleteAction.Activated += delegate {
+            if (WindowHelper.Confirm(this, "¿Quieres eliminar el registro?")) {
+				object id = TreeViewHelper.GetId(treeView);
+				CategoriaDao.Delete(id);
+			}
+            
 
         };
-    }
-
-    private object getId()
-    {
-        TreeIter treeIter;
-        treeView.Selection.GetSelected(out treeIter);
-        return treeView.Model.GetValue(treeIter, 0);
-    }
-
-    private void fillListStore(ListStore listStore)
-    {
-        listStore.Clear();
-        IDbCommand dbCommnand = App.Instance.Connection.CreateCommand();
-        dbCommnand.CommandText = "select * from categoria order by id";
-        IDataReader dataReader = dbCommnand.ExecuteReader();
-        while (dataReader.Read())
-            listStore.AppendValues(dataReader["id"].ToString(), dataReader["nombre"]);
-        dataReader.Close();
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)

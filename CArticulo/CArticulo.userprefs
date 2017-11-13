@@ -1,8 +1,8 @@
-﻿<Properties StartupConfiguration="{8C49EAC4-B4F0-4618-84C3-4B4F0C13FA90}|Default">
+﻿<Properties StartupConfiguration="{9886B75F-774C-44E8-8E8E-5C159F150554}|Default">
   <MonoDevelop.Ide.ItemProperties.CArticulo PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CArticulo/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../CCategoria/CCategoria/MainWindow.cs">
     <Files>
-      <File FileName="CArticulo/Program.cs" Line="1" Column="1" />
+      <File FileName="../CCategoria/CCategoria/MainWindow.cs" Line="35" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
