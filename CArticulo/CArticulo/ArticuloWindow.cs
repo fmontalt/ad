@@ -10,14 +10,17 @@ namespace CArticulo
         public ArticuloWindow(Articulo articulo) : base(Gtk.WindowType.Toplevel) {
             this.Build();
             entryNombre.Text = articulo.Nombre;
-            //spinbuttonPrecio. = articulo.Precio;
-            //entryCategoria. = articulo.Categoria;
+            spinbuttonPrecio.Value = Convert.ToDouble(articulo.Precio);
+            entryCategoria.Text = articulo.Categoria.ToString();
 
 			saveAction.Activated += delegate {
                 articulo.Nombre = entryNombre.Text;
-				//CategoriaDao.Save(categoria);
+                articulo.Precio = Convert.ToDecimal(spinbuttonPrecio.Value);
+                articulo.Categoria = long.Parse(entryCategoria.Text);
+                ArticuloDao.Save(articulo);
 				Destroy();
 			};
+
         }
 
 	

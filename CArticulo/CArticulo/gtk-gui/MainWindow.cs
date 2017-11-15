@@ -5,9 +5,13 @@ public partial class MainWindow
 {
 	private global::Gtk.UIManager UIManager;
 
-	private global::Gtk.Action fileAction;
+	private global::Gtk.Action newAction;
 
-	private global::Gtk.Action Action;
+	private global::Gtk.Action refreshAction;
+
+	private global::Gtk.Action editAction;
+
+	private global::Gtk.Action deleteAction;
 
 	private global::Gtk.VBox vbox1;
 
@@ -23,10 +27,14 @@ public partial class MainWindow
 		// Widget MainWindow
 		this.UIManager = new global::Gtk.UIManager();
 		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup("Default");
-		this.fileAction = new global::Gtk.Action("fileAction", null, null, "gtk-file");
-		w1.Add(this.fileAction, null);
-		this.Action = new global::Gtk.Action("Action", null, null, null);
-		w1.Add(this.Action, null);
+		this.newAction = new global::Gtk.Action("newAction", null, null, "gtk-file");
+		w1.Add(this.newAction, null);
+		this.refreshAction = new global::Gtk.Action("refreshAction", null, null, "gtk-refresh");
+		w1.Add(this.refreshAction, null);
+		this.editAction = new global::Gtk.Action("editAction", null, null, "gtk-edit");
+		w1.Add(this.editAction, null);
+		this.deleteAction = new global::Gtk.Action("deleteAction", null, null, "gtk-delete");
+		w1.Add(this.deleteAction, null);
 		this.UIManager.InsertActionGroup(w1, 0);
 		this.AddAccelGroup(this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -37,8 +45,10 @@ public partial class MainWindow
 		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString("<ui><toolbar name=\'toolbar1\'><toolitem name=\'fileAction\' action=\'fileAction\'/></t" +
-				"oolbar></ui>");
+		this.UIManager.AddUiFromString("<ui><toolbar name=\'toolbar1\'><toolitem name=\'newAction\' action=\'newAction\'/><tool" +
+				"item name=\'editAction\' action=\'editAction\'/><toolitem name=\'refreshAction\' actio" +
+				"n=\'refreshAction\'/><toolitem name=\'deleteAction\' action=\'deleteAction\'/></toolba" +
+				"r></ui>");
 		this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget("/toolbar1")));
 		this.toolbar1.Name = "toolbar1";
 		this.toolbar1.ShowArrow = false;
@@ -67,6 +77,5 @@ public partial class MainWindow
 		this.DefaultWidth = 400;
 		this.DefaultHeight = 300;
 		this.Show();
-		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 	}
 }

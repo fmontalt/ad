@@ -8,6 +8,8 @@ namespace CArticulo
 
 		private global::Gtk.Action saveAction;
 
+		private global::Gtk.Action refreshAction;
+
 		private global::Gtk.VBox vbox1;
 
 		private global::Gtk.Toolbar toolbar1;
@@ -36,6 +38,8 @@ namespace CArticulo
 			global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup("Default");
 			this.saveAction = new global::Gtk.Action("saveAction", null, null, "gtk-floppy");
 			w1.Add(this.saveAction, null);
+			this.refreshAction = new global::Gtk.Action("refreshAction", null, null, "gtk-refresh");
+			w1.Add(this.refreshAction, null);
 			this.UIManager.InsertActionGroup(w1, 0);
 			this.AddAccelGroup(this.UIManager.AccelGroup);
 			this.Name = "CArticulo.ArticuloWindow";
