@@ -1,41 +1,33 @@
+
 package ventas;
 
 import java.math.BigDecimal;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.GenerationType;
 
-@Entity
+@Entity(name = "Articulo")
 public class Articulo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
+	@ManyToOne
+	@JoinColumn(name = "categoria")
+	private Categoria categoria;
 	private String nombre;
 	private BigDecimal precio;
-	private Categoria categoria;
 
-	// get y set Nombre
-	public String getNombre() {
-		return nombre;
+	public long getId() {
+		return id;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	// get y set Precio
-	public BigDecimal getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(BigDecimal precio) {
-		this.precio = precio;
-	}
-
-	// get y set Categoria
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -44,4 +36,24 @@ public class Articulo {
 		this.categoria = categoria;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public BigDecimal getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(BigDecimal precio) {
+		this.precio = precio;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("[%s] %s", id, nombre);
+	}
 }
